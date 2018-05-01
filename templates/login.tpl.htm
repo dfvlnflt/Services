@@ -1,0 +1,136 @@
+<!Doctype html>
+<html>
+  <head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/loginPageStyle.css" />
+
+    <script>
+      /* Function for "Invalid Login Credentials"*/
+      $(function(){
+        $('#loginForm').on("submit", function(event){
+          event.preventDefault();
+          $.post("http://localhost:8888/rollins/services/user-service.php", $('#loginForm').serialize())
+          .done(function(data){
+              obj = jQuery.parseJSON(data);
+              if (obj.code == "500")
+              {
+                $('#errorBox').show();
+                $('#errorMsg').html(obj.message);
+              }
+              else {
+                window.location.href="home.php";
+              }
+          });
+        });
+      });
+
+      /* Function for "User name already taken"*/
+      $(function(){
+        $('#newUserForm').on("submit", function(event){
+          event.preventDefault();
+          $.post("http://localhost:8888/rollins/services/user-service.php", $('#newUserForm').serialize())
+          .done(function(data){
+              obj = jQuery.parseJSON(data);
+              if (obj.code == "500")
+              {
+                $('#nameAlreadyExistsError').show();
+                $('#nameAlreadyExistsErrorMsg').html(obj.message);
+              }
+              else {
+                window.location.href="login.php";
+              }
+          });
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+
+  <!-- Login Form -->
+    <div class="login-box container">
+      <img src="css/avatar.png" class="avatar">
+      <h1> Login Here </h1>
+      <!--<br><div id='errorBox' class='alert alert-danger errorStyle' style='display:none;'><span id='errorMsg'></span></div>-->
+      <br><div id='errorBox' class='errorStyle' style='display:none;'><span id='errorMsg'></span></div><br>
+    <!-- BEGIN FORM -->
+    <form method="POST" id='loginForm'>
+      <input type="hidden" name="action" value="verify" />
+        <strong>Username: </strong><br>
+        <div class="form-group">
+          <input type="text" class="form-control" id ='username' name='username' placeholder="Enter Username" required>
+        </div>
+
+        <strong>Password: </strong><br>
+        <div class="form-group">
+          <input type="password" class="form-control" name='password' placeholder="Enter Password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Log In</button>
+        <p> - OR - </p>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Create New User</button>
+    </form>
+    </div>
+    <!-- END FORM -->
+
+
+  <!-- BEGIN MODAL -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Create New User</h4>
+        </div>
+        <div class="modal-body">
+          <form action="" method="POST" id="newUserForm">
+            <input type="hidden" name="action" value="insert" />
+            <fieldset>
+
+              <strong>First Name:</strong><br>
+              <div class="form-group">
+              <input class="form-control" type="text" name="firstName" placeholder="First Name" required>
+              </div>
+
+              <strong>Last Name:</strong><br>
+              <div class="form-group">
+              <input class="form-control" type="text" name="lastName" placeholder="Last Name" required>
+              </div>
+
+              <strong>Job Title:</strong><br>
+              <div class="form-group">
+              <input class="form-control" type="text" name="jobTitle" placeholder="Job Title">
+              </div>
+
+              <strong>Email:</strong><br>
+              <div class="form-group">
+              <input class="form-control" type="text" name="email" placeholder="Email" required pattern = "[A-Za-z' -]*@rollins.edu">
+              </div>
+
+              <strong>Username:</strong><br>
+              <div class="form-group">
+              <input class="form-control" type="text" name="username" placeholder="Username">
+              </div>
+
+              <strong>Password:</strong><br>
+              <div class="form-group">
+              <input class="form-control" type="password" name="password" placeholder="Password">
+              </div>
+
+              <div id='nameAlreadyExistsError' class='alert alert-danger' style='display:none;'><span id='nameAlreadyExistsErrorMsg'></span></div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </fieldset>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END MODAL -->
+
+  </body>
+</html>

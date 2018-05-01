@@ -1,0 +1,550 @@
+<!-- BEGIN LOGO -->
+<div id="pg_header_logo">
+        <a href="http://www.rollins.edu/">
+          <img alt="Rollins College Home" src="https://bannerweb.rollins.edu/rollinsdocs/images/rollins.png" title="Rollins College Home" class ="center">
+        </a>
+</div>
+<hr>
+<!-- END LOGO -->
+<!-- BEGIN HEADER -->
+<div class="container">
+<h1> {HEADER} </h1>
+</div>
+<!-- END HEADER -->
+
+
+
+<!Doctype html>
+<html>
+  <head>
+    <style>
+
+    .astext {
+    background:none;
+    border:none;
+    margin:0;
+    padding:0;
+    }
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+    .notbold{
+    font-weight:normal;
+}​
+    hr {
+      display: block;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      margin-left: auto;
+      margin-right: auto;
+      border-style: inset;
+      border-width: 2px;
+    }
+
+    table {
+    margin-left: 20px;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+
+    .buttonF{
+      float: left;
+    }
+
+    .button4 {
+      padding: 3px 5px;
+    color: black;
+    border: 2px solid #e7e7e7;
+}
+
+.button4:hover {background-color: #e7e7e7;}
+
+
+
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+  </head>
+  <body>
+    <!-- BEGIN LOGO -->
+    <div id="pg_header_logo">
+            <a href="http://www.rollins.edu/">
+              <img alt="Rollins College Home" src="https://bannerweb.rollins.edu/rollinsdocs/images/rollins.png" title="Rollins College Home" class ="center">
+            </a>
+   </div>
+   <hr>
+   <!-- END LOGO -->
+
+   <!-- BEGIN BUTTONS -->
+   <div class="container">
+     <div class="btn-group">
+       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalService">Add Service</button>
+       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalAssign">Add Assignment</button>
+       <button type="button" class="btn btn-primary" onclick="window.location='login.php'">Logout</button>
+     </div>
+   </div>
+   <!-- END BUTTONS -->
+   <div class= "container" >
+   <h1>Assignments: </h1>
+   <input class="form-control" id="myInput" type="text" placeholder="Search ID's, services, usernames, or justifications.."><br>
+
+      <table class="table table-bordered table-striped table-hover container" id="example" >
+        <thead>
+        <tr>
+          <th><strong>ID</strong></th>
+          <th><strong>Service</strong></th>
+          <th><strong>User</strong></th>
+          <th><strong>Justification</strong></th>
+          <th></th>
+        </tr>
+      </thead>
+        <!-- BEGIN TABLE -->
+        <tbody id="myTableAssignment">
+          <tr>
+            <td>{AID}</td>
+            <td><button class="astext button4" data-toggle="modal" data-target="#myModal{TBL_SERVICE_ID}">{SERVICE_NAME}</button></td>
+            <td>{BANN_NTID}</td>
+            <td>{JUSTIFICATION}</td>
+            <td>
+                <form action='services/assignment-service.php' method="POST">
+                  <input type="hidden" name="action" value="delete">
+                  <input type="hidden" name="aid" value="{AID}" />
+                  <button class="btn btn-primary buttonF" type="submit" name="submit"><span class="glyphicon glyphicon-trash"></span></button>
+                </form>
+                <button class= "btn btn-primary buttonF" data-toggle="modal" data-target="#myModalAssignUpdate{ASSINGMENT_UPDATE_ID}"><span class="glyphicon glyphicon-pencil"></span></button>
+            </td>
+          </tr>
+        </tbody>
+        <!-- END TABLE -->
+      </table>
+
+        <!-- BEGIN MODAL -->
+        <div class="modal fade" id="myModal{SERVICE_ID}" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Service Description</h4>
+              </div>
+              <div class="modal-body">
+                <p>Name: {SERVICE_NAME_MODAL}</p>
+                <p>Service ID: {SERVICE_SID_MODAL}</p>
+                <p>Description: {SERVICE_DESCRIPTION_MODAL}</p>
+                <p>URL: {SERVICE_URL_MODAL}</p>
+                <p>External Contact Name: {SERVICE_ECN_MODAL}</p>
+                <p>External Contact Phone: {SERVICE_ECP_MODAL}</p>
+                <p>External Contact Email: {SERVICE_ECE_MODAL}</p>
+                <p>Number of Licenses: {SERVICE_NO_LICENSE_MODAL}</p>
+                <p>Internal Contact Name: {SERVICE_ICN_MODAL}</p>
+                <p>Internal Contact Phone: {SERVICE_ICP_MODAL}</p>
+                <p>Internal Contact Email: {SERVICE_ICE_MODAL}</p>
+                <p>Cost: {SERVICE_COST_MODAL}</p>
+                <p>Cost per Unit: {SERVICE_COST_UNIT_MODAL}</p>
+                <p>Contract Date: {SERVICE_CONTRACT_DATE_MODAL}</p>
+                <p>Renewal Date: {SERVICE_RENEWAL_DATE_MODAL}</p>
+                <p>Contract ID: {SERVICE_CONTRACT_ID_MODAL}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- END MODAL -->
+
+
+        <!-- BEGIN MODALASSIGN -->
+        <div class="modal fade" id="myModalAssign" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Assignment</h4>
+              </div>
+              <div class="modal-body">
+                <form action="services/assignment-service.php" method="POST">
+                  <input type="hidden" name="action" value="insert" />
+                <div class="container">
+                </form>
+                <strong>Select a Service: </strong>
+                <select name='service'>
+                  <option value="0" selected>&nbsp;</option>
+                  <!-- BEGIN SELECTION_BOX -->
+                  <option value='{SERVICE_ID}'>{SERVICE_NAME}</option>
+                  <!-- END SELECTION_BOX -->
+                </select>
+
+                <br><strong>FoxID: </strong><br>
+                <div class="form-group">
+                  <input type="text"  name='bann_ntid'placeholder="Enter FoxID">
+                </div>
+
+                <strong>Justification: </strong><br>
+                <div class="form-group">
+                  <textarea class="textarea" name="justification" placeholder="Enter Justification" rows="4" cols="50" required></textarea>
+                  <span class="error">*</span>
+                  <br>
+                </div>
+
+                <strong>License required? </strong> <br>
+                <input type="radio" name="req_license" value="1"> Yes<br>
+                <input type="radio" name="req_license" value="0"> No<br>
+
+                <button type="submit" class="btn btn-default">Submit</button>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        </div>
+        <!-- END MODALASSIGN -->
+
+
+
+<div class = "container">
+  <h1> Services: </h1>
+  <input class="form-control" id="myInputServices" type="text" placeholder="Search.."><br>
+</div>
+   <table class="table table-bordered table-striped" name='services' id="example">
+     <thead>
+     <tr>
+       <th><strong>Service ID</strong></th>
+       <th><strong>Service Name</strong></th>
+       <th><strong>Number of Available License</strong></th>
+       <th></th>
+     </tr>
+   </thead>
+   <!-- BEGIN TABLE_SERVICE -->
+   <tbody id="myTableServices">
+       <td>{SID_SERVICE_TABLE}</td>
+       <td><button class="astext button4" data-toggle="modal" data-target="#myModal{TBL_SERVICE_ID}">{TABLE_SERVICE_NAME}</button></td>
+       <td>{NO_LICENSE}</td>
+       <td class="contact-delete">
+           <form action='services/service-service.php' method="POST">
+             <input type="hidden" name="action" value="delete">
+             <input type="hidden" name="name" value="{NAME}" />
+             <button class="btn btn-primary buttonF" type="submit" name="submit"><span class="glyphicon glyphicon-trash"></span></button>
+           </form>
+           <button class= "btn btn-primary buttonF" data-toggle="modal" data-target="#myModalServiceUpdate{SERVICE_UPDATE_ID}"><span class="glyphicon glyphicon-pencil"></span></button>
+       </td>
+     </tr>
+     <tbody>
+   <!-- END TABLE_SERVICE -->
+   </table>
+
+
+   <!-- BEGIN MODALSERVICE -->
+   <div class="modal fade" id="myModalService" role="dialog">
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal">&times;</button>
+           <h4 class="modal-title">Add Service</h4>
+         </div>
+         <div class="modal-body">
+           <form action="services/service-service.php" method="POST">
+             <input type="hidden" name="action" value="insert" />
+             <fieldset>
+
+               <strong>Name of Service:</strong><br>
+               <div class="form-group">
+               <input class="form-control" type="text" name="name" placeholder="Name of service" required>
+               </div>
+
+               <strong>Description:</strong><br>
+               <div class="form-group">
+               <textarea class="form-control textarea"name="description" placeholder="Description" required></textarea>
+               </div>
+
+               <strong>Internal Contact Name:</strong><br>
+               <div class="form-group">
+               <input class="form-control" type="text" name="int_contact_name" placeholder="Name" required>
+               </div>
+
+               <strong>Internal Contact Email:</strong><br>
+               <div class="form-group">
+               <input class="form-control" type="text" name="int_contact_email" placeholder="Email" required>
+               </div>
+
+               <strong>Internal Contact Phone:</strong><br>
+               <div class="form-group">
+               <input class= "form-control" type="text" name="int_contact_phone" placeholder="Phone Number" required>
+             </div>
+
+               <strong> URL:</strong><br>
+               <div class="form-group">
+               <input class= "form-control" type="text" name="url" placeholder="URL">
+             </div>
+
+               <strong>External Contact Name:</strong><br>
+               <div class="form-group">
+               <input class= "form-control" type="text" name="ext_contact_name" placeholder="Name">
+             </div>
+
+               <strong>External Contact Email:<strong><br>
+               <div class="form-group">
+               <input class= "form-control" type="text" name="ext_contact_email" placeholder="Email">
+             </div>
+
+               <strong>External Contact Phone:</strong><br>
+               <div class="form-group">
+               <input class="form-control" type="text" name="ext_contact_phone" placeholder="Phone">
+             </div>
+
+               <strong>Number of Licenses:</strong><br>
+               <div class="form-group">
+               <input class="form-control" type="text" name="no_license" placeholder="Number of Licenses (Please enter '0' if no licenses required)">
+             </div>
+
+               <strong>Cost:</strong><br>
+               <div class="form-group">
+               <input class="form-control" type="text" name="cost" placeholder="Cost">
+             </div>
+
+               <strong>Cost per Unit:</strong><br>
+               <div class="form-group">
+               <input class="form-control" type="text" name="cost_unit" placeholder="Cost per Unit">
+             </div>
+
+               <strong>Contract Date:</strong<br>
+               <div class="form-group">
+               <input class="form-control" type="date" name="contract_date">
+             </div>
+
+               <strong>Contract Renewal:</strong><br>
+               <div class="form-group">
+               <input class="form-control" type="date" name="renewal_date">
+             </div>
+
+               <strong>Contract ID:<strong><br>
+               <div class="form-group">
+               <input type="text" name="contract_id" placeholder="ID">
+             </div>
+
+               <button type="submit" class="btn btn-default">Submit</button>
+             </fieldset>
+           </form>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+       </div>
+
+     </div>
+   </div>
+   <!-- END MODALSERVICE -->
+
+
+
+
+   <!-- BEGIN MODALASSIGNUPDATE -->
+   <div class="modal fade" id="myModalAssignUpdate{UPDATE_AID}" role="dialog">
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal">&times;</button>
+           <h4 class="modal-title">Update Assignment</h4>
+         </div>
+         <div class="modal-body">
+           <form action="services/assignment-service.php" method="POST">
+             <input type="hidden" name="action" value="update" />
+             <input type="hidden" name='aid' value={AID_UPDATE} />
+
+           <strong>FoxID: </strong><br>
+           <div class="form-group">
+             <input class= "form-control notbold" type="text"  name='bann_ntid'placeholder="{CURRENT_BANN_NTID}">
+           </div>
+
+           <strong>Justification: </strong><br>
+           <div class="form-group">
+             <textarea class="textarea notbold form-control" name="justification" placeholder="{CURRENT_JUSTIFICATION}" rows="4" cols="50"></textarea>
+             <br>
+           </div>
+
+           <button type="submit" class="btn btn-default">Submit</button>
+           </form>
+
+         <div class="modal-footer">
+           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+       </div>
+
+     </div>
+   </div>
+   </div>
+   <!-- END MODALASSIGNUPDATE -->
+
+
+
+
+   <!-- BEGIN MODALSERVICEUPDATE -->
+   <div class="modal fade" id="myModalServiceUpdate{UPDATE_SID}" role="dialog">
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal">&times;</button>
+           <h4 class="modal-title">Update Service</h4>
+         </div>
+         <div class="modal-body">
+           <form action="services/service-service.php" method="POST">
+             <input type="hidden" name="action" value="update" />
+             <input type="hidden" name='sid' value={SID_UPDATE} />
+
+             <strong>Name of Service:</strong><br>
+             <div class="form-group">
+             <input class="form-control notbold" type="text" name="name" placeholder="{CURRENT_SERVICE_NAME}">
+             </div>
+
+             <strong>Description:</strong><br>
+             <div class="form-group">
+             <textarea class="form-control textarea notbold"name="description" placeholder="{CURRENT_DESCRIPTION}"></textarea>
+             </div>
+
+             <strong>Internal Contact Name:</strong><br>
+             <div class="form-group">
+             <input class="form-control notbold" type="text" name="int_contact_name" placeholder="{CURRENT_INT_CONTACT_NAME}">
+             </div>
+
+             <strong>Internal Contact Email:</strong><br>
+             <div class="form-group">
+             <input class="form-control notbold" type="text" name="int_contact_email" placeholder="{CURRENT_INT_CONTACT_EMAIL}">
+             </div>
+
+             <strong>Internal Contact Phone:</strong><br>
+             <div class="form-group">
+             <input class= "form-control notbold" type="text" name="int_contact_phone" placeholder="{CURRENT_INT_CONTACT_PHONE}">
+           </div>
+
+             <strong> URL:</strong><br>
+             <div class="form-group">
+             <input class= "form-control notbold" type="text" name="url" placeholder="{CURRENT_URL}">
+           </div>
+
+             <strong>External Contact Name:</strong><br>
+             <div class="form-group">
+             <input class= "form-control notbold" type="text" name="ext_contact_name" placeholder="{CURRENT_EXT_CONTACT_NAME}">
+           </div>
+
+             <strong>External Contact Email:</strong><br>
+             <div class="form-group">
+             <input class= "form-control notbold" type="text" name="ext_contact_email" placeholder="{CURRENT_EXT_CONTACT_EMAIL}">
+           </div>
+
+             <strong>External Contact Phone:</strong><br>
+             <div class="form-group">
+             <input class="form-control notbold" type="text" name="ext_contact_phone" placeholder="{CURRENT_EXT_CONTACT_PHONE}">
+           </div>
+
+             <strong>Number of Licenses:</strong><br>
+             <div class="form-group">
+             <input class="form-control notbold" type="text" name="no_license" placeholder="{CURRENT_NO_LICENSE}">
+           </div>
+
+             <strong>Cost:</strong><br>
+             <div class="form-group">
+             <input class="form-control notbold" type="text" name="cost" placeholder="{CURRENT_COST}">
+           </div>
+
+             <strong>Cost per Unit:</strong><br>
+             <div class="form-group">
+             <input class="form-control notbold" type="text" name="cost_unit" placeholder="{CURRENT_COST_UNIT}">
+           </div>
+
+             <strong>Contract Date:</strong<br>
+             <div class="form-group">
+             <input class="form-control notbold" type="date" name="{CURRENT_CONTRACT_DATE}">
+           </div>
+
+             <strong>Contract Renewal:</strong><br>
+             <div class="form-group">
+             <input class="form-control notbold" type="date" name="{CURRENT_RENEWAL_DATE}">
+           </div>
+
+             <strong>Contract ID:</strong><br>
+             <div class="form-group">
+             <input type="text notbold" name="contract_id" placeholder="{CURRENT_ID}">
+           </div>
+
+             <button type="submit" class="btn btn-default">Submit</button>
+             </form>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+
+     </div>
+   </div>
+   </div>
+   <!-- END MODALSERVICEUPDATE -->
+
+
+
+
+
+
+   <script>
+      $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+          var value = $(this).val().toLowerCase();
+          $("#myTableAssignment tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        });
+      });
+    </script>
+
+    <script>
+       $(document).ready(function(){
+         $("#myInputServices").on("keyup", function() {
+           var value = $(this).val().toLowerCase();
+           $("#myTableServices tr").filter(function() {
+             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+           });
+         });
+       });
+     </script>
+
+     <script>
+     $(document).ready(function() {
+    $('#example').DataTable( {
+        scrollY:        '50vh',
+        scrollCollapse: true,
+        paging:         false,
+        searching: false,
+        bInfo: false
+
+
+    } );
+} );
+     </script>
+
+
+
+
+
+  </body>
+</html>

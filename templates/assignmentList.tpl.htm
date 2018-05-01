@@ -1,0 +1,70 @@
+<!Doctype html>
+<html>
+  <head>
+
+    <style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+    hr {
+      display: block;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      margin-left: auto;
+      margin-right: auto;
+      border-style: inset;
+      border-width: 2px;
+    }
+
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <!-- BEGIN LOGO -->
+    <div id="pg_header_logo">
+            <a href="http://www.rollins.edu/">
+              <img alt="Rollins College Home" src="https://bannerweb.rollins.edu/rollinsdocs/images/rollins.png" title="Rollins College Home" class ="center">
+            </a>
+   </div>
+   <hr>
+   <!-- END LOGO -->
+   <strong>Assignments: </strong>
+      <table name='assignments'>
+        <tr>
+          <th><strong>AID</strong></th>
+          <th><strong> BANN_NTID</strong></th>
+          <th><strong> JUSTIFICATION</strong></th>
+        </tr>
+        <!-- BEGIN TABLE -->
+          <tr>
+            <td>{AID}</td>
+            <td>{BANN_NTID}</td>
+            <td>{JUSTIFICATION}</td>
+          </tr>
+   <!-- END TABLE -->
+   <!-- BEGIN BUTTON -->
+    <button type="button" class="btn btn-success" onclick="window.location='home.php'">Back To Home</button>
+    <!-- END BUTTON -->
+  </body>
+</html>

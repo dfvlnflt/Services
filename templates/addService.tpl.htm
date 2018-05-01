@@ -1,0 +1,97 @@
+<!Doctype html>
+<html>
+  <head>
+    <style>
+      .error {color: #FF0000;}
+    </style>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <!-- BEGIN HEADER -->
+    <h1> {HEADER} </h1>
+    <!-- END HEADER -->
+    <!-- BEGIN FORM -->
+    <form action="services/service-service.php" method="POST">
+      <input type="hidden" name="action" value="insert" />
+      <fieldset>
+        <legend>New Service Information:</legend>
+
+        Name of Service:<br>
+        <input type="text" name="name" placeholder="Name of service" required>
+        <span class="error">*</span>
+        <br>
+
+        Description:<br>
+        <textarea name="description" placeholder="Description" required></textarea>
+        <span class="error">*</span>
+        <br>
+
+        Internal Contact Name:<br>
+        <input type="text" name="int_contact_name" placeholder="Name" required>
+        <span class="error">*</span>
+        <br>
+
+        Internal Contact Email:<br>
+        <input type="text" name="int_contact_email" placeholder="Email" required>
+        <span class="error">*</span>
+        <br>
+
+        Internal Contact Phone:<br>
+        <input type="text" name="int_contact_phone" placeholder="Phone Number" required>
+        <span class="error">*</span>
+        <br>
+
+        URL:<br>
+        <input type="text" name="url" placeholder="URL">
+        <br>
+
+        External Contact Name:<br>
+        <input type="text" name="ext_contact_name" placeholder="Name">
+        <br>
+
+        External Contact Email:<br>
+        <input type="text" name="ext_contact_email" placeholder="Email">
+        <br>
+
+        External Contact Phone:<br>
+        <input type="text" name="ext_contact_phone" placeholder="Phone">
+        <br>
+
+        License Number:<br>
+        <input type="text" name="no_license" placeholder="License Number">
+        <br>
+
+        Cost:<br>
+        <input type="text" name="cost" placeholder="Cost">
+        <br>
+
+        Cost per Unit:<br>
+        <input type="text" name="cost_unit" placeholder="Cost per Unit">
+        <br>
+
+        Contract Date:<br>
+        <input type="date" name="contract_date">
+        <br>
+
+        Contract Renewal:<br>
+        <input type="date" name="renewal_date">
+        <br>
+
+        Contract ID:<br>
+        <input type="text" name="contract_id" placeholder="ID">
+        <br>
+
+        <input type="submit" value="Submit" name="submit" class='btn btn-md btn-success'>
+      </fieldset>
+    </form>
+    <!-- END FORM -->
+
+  </body>
+</html>

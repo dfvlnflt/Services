@@ -1,0 +1,58 @@
+<!Doctype html>
+<html>
+  <head>
+    <style>
+      .error {color: #FF0000;}
+      textarea {
+    resize: none;
+      }
+    </style>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <!-- BEGIN HEADER -->
+    <h1 align="center"> {HEADER} </h1>
+    <!-- END HEADER -->
+
+    <!-- BEGIN FORM -->
+    <form action="services/assignment-service.php" method="POST">
+      <input type="hidden" name="action" value="insert" />
+    <div class="container">
+    <form>
+    <strong>Select a Service: </strong>
+    <select name='service'>
+      <option value="0" selected>&nbsp;</option>
+      <!-- BEGIN SELECTION_BOX -->
+      <option value='{SERVICE_ID}'>{SERVICE_NAME}</option>
+      <!-- END SELECTION_BOX -->
+    </select>
+
+    <br><strong>FoxID: </strong><br>
+    <div class="form-group">
+      <input type="text" class="form-control" name='bann_ntid'placeholder="Enter FoxID">
+    </div>
+
+    <strong>Justification: </strong><br>
+    <div class="form-group">
+      <textarea class="textarea" name="justification" placeholder="Enter Justification" rows="4" cols="50" required></textarea>
+      <span class="error">*</span>
+      <br>
+    </div>
+
+    <strong>License required? </strong> <br>
+    <input type="radio" name="req_license" value="1"> Yes<br>
+    <input type="radio" name="req_license" value="0"> No<br>
+
+    <button type="submit" class="btn btn-default">Submit</button>
+    <!-- END FORM -->
+    </form>
+  </div>
+  </body>
+</html>
