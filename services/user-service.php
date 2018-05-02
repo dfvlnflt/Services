@@ -83,22 +83,38 @@
     case 'get':
       //CODE TO SELECT USER
       $username = $_GET['username'];
-      echo '<strong> GET: </strong>';
 
-      $sqlCheck = "SELECT count(*) user_count FROM user WHERE username = '$username'";
-      $resCheck = mysqli_query($conn, $sqlCheck) or die (mysqli_error($conn));
-      $rowCheck = mysqli_fetch_assoc($resCheck);
-      if($rowCheck['user_count'] == 0){
-        echo"USER NOT FOUND";
-      }else{
-        $sql = "SELECT * FROM user WHERE username = '$username'";
-        $res = mysqli_query($conn, $sql) or die (mysqli_error($conn));
-        while($row = mysqli_fetch_assoc($res)){
-          echo($row["first_name"]);
-        }
-     }
+      $returnArr = array();
+      $returnArr['data'] = array();
+      $dataArr = array();
+      $responseCode = "202";
 
+      $sql = "SELECT * FROM user WHERE username = $username";
+      $res = mysqli_query($conn, $sql);
+      $ct = 0;
+      while ($row = mysqli_fetch_array($res)){
+        $dataArr['uid'] = $row['uid'];
+        $dataArr['password'] = $row['password'];
+        $dataArr['username'] = $row['username'];
+        $dataArr['first_name'] = $row['first_name'];
+        $dataArr['last_name'] = $row['last_name'];
+        $dataArr['job_jobtitle'] = $row['job_jobtitle'];
+        $dataArr['email'] = $row['email'];
+
+        array_push($returnArr['data'], $dataArr);
+        $ct++;
+      }
+      if ($ct == 0)
+      {
+        $responseCode = "204";
+      }
+      else {
+        $responseCode = "200";
+      }
+      $returnArr['responseCode'] = $responseCode;
+      echo json_encode($returnArr);
     break;
+
     case 'verify':
       //CODE TO VERIFY LOGIN INFORMATION
       $username = $_POST['username'];
